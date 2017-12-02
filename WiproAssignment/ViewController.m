@@ -12,12 +12,13 @@
 #import "ResponseHandler.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "UIView+UiviewConstraints.h"
-
+#import "City.h"
 @interface ViewController ()
 {
     UITableView *tblView;
-    NSArray *arrayDataOfCity;
+//    NSArray *cityArray;
 }
+@property(nonatomic,strong)NSMutableArray <City*>*cityArray;
 @end
 
 @implementation ViewController
@@ -35,25 +36,33 @@
 
 -(void) fetchServerData
 {
+    typeof(self) __weak weakSelf = self;
+    
     NSMutableURLRequest *request = [RequestHandler createGetRequest:[NSString stringWithFormat:@"%@%@",KBaseUrl,FACTS]];
-    [ResponseHandler processRequest:request WithCompletionHandler:^(id theJson, NSError *theError) {
+    [ResponseHandler processRequest:request WithCompletionHandler:^(NSArray <City*>*array,NSString *city, NSError *theError) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            if (theJson) {
-                arrayDataOfCity = [theJson objectForKey:@"rows"];
-                self.title = [theJson objectForKey:@"title"];
+            if (array) {
+                
+                if (weakSelf.cityArray == nil){
+                    weakSelf.cityArray = [NSMutableArray arrayWithArray:array];
+                }
+                else{
+                    [weakSelf.cityArray addObjectsFromArray:array];
+                }
+                
+                weakSelf.title = city;
                 [tblView reloadData];
-                [tblView.refreshControl endRefreshing];
             }
+            [tblView.refreshControl endRefreshing];
         });
     }];
     
 }
 
 -(void)setLayOutConstraintsForView{
-    
     tblView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
     [self.view addSubview:tblView];
-    
+    tblView.tableFooterView = [[UIView alloc]init];
     tblView.translatesAutoresizingMaskIntoConstraints = NO;
     
     NSLayoutConstraint * leadingConstraint = [NSLayoutConstraint constraintWithItem:tblView attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeLeading multiplier:1.0 constant:0];
@@ -83,19 +92,21 @@
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"Cell";
+    City *objCity = self.cityArray[indexPath.row];
+
     CustomTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[CustomTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
-    if ([[[arrayDataOfCity objectAtIndex:indexPath.row] valueForKey:@"title"] isKindOfClass:[NSString class]]) {
-        cell.primaryLabel.text = [[arrayDataOfCity objectAtIndex:indexPath.row] valueForKey:@"title"];
+    if (objCity.title != nil && [objCity.title isKindOfClass:[NSString class]]) {
+        cell.primaryLabel.text = objCity.title;
     }
-    if ([[[arrayDataOfCity objectAtIndex:indexPath.row] valueForKey:@"description"] isKindOfClass:[NSString class]]) {
-        cell.secondaryLabel.text = [[arrayDataOfCity objectAtIndex:indexPath.row] valueForKey:@"description"];;
+    if (objCity.Description != nil && [objCity.Description isKindOfClass:[NSString class]]) {
+        cell.secondaryLabel.text = objCity.Description;
     }
-    if ([[[arrayDataOfCity objectAtIndex:indexPath.row] valueForKey:@"imageHref"] isKindOfClass:[NSString class]]) {
-        [cell.myImageView sd_setImageWithURL:[NSURL URLWithString:[[arrayDataOfCity objectAtIndex:indexPath.row] valueForKey:@"imageHref"]] placeholderImage:[UIImage imageNamed:@"placeHolder"]];
+    if (objCity.image != nil && [objCity.image isKindOfClass:[NSString class]]) {
+        [cell.myImageView sd_setImageWithURL:[NSURL URLWithString:objCity.image] placeholderImage:[UIImage imageNamed:@"placeHolder"]];
     }
     
     if (cell != nil){
@@ -117,7 +128,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return arrayDataOfCity.count;
+    return self.cityArray.count;
 }
 
 - (void)didReceiveMemoryWarning {

@@ -20,6 +20,7 @@
 		44A8DBC61FCEF3CF00641F05 /* CustomTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 44A8DBC51FCEF3CF00641F05 /* CustomTableViewCell.m */; };
 		44A8DBC91FCF060E00641F05 /* ResponseHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 44A8DBC81FCF060E00641F05 /* ResponseHandler.m */; };
 		44BE58FD1FD04D3500DF73D6 /* UIView+UiviewConstraints.m in Sources */ = {isa = PBXBuildFile; fileRef = 44BE58FC1FD04D3500DF73D6 /* UIView+UiviewConstraints.m */; };
+		44BE59001FD2871700DF73D6 /* City.m in Sources */ = {isa = PBXBuildFile; fileRef = 44BE58FF1FD2871700DF73D6 /* City.m */; };
 		E1363DC31B73DB2FC6017592 /* libPods-WiproAssignment.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 402DB96367A3D5BA421283C9 /* libPods-WiproAssignment.a */; };
 /* End PBXBuildFile section */
 
@@ -69,6 +70,8 @@
 		44A8DBC81FCF060E00641F05 /* ResponseHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ResponseHandler.m; sourceTree = "<group>"; };
 		44BE58FB1FD04D3500DF73D6 /* UIView+UiviewConstraints.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+UiviewConstraints.h"; sourceTree = "<group>"; };
 		44BE58FC1FD04D3500DF73D6 /* UIView+UiviewConstraints.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+UiviewConstraints.m"; sourceTree = "<group>"; };
+		44BE58FE1FD2871700DF73D6 /* City.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = City.h; sourceTree = "<group>"; };
+		44BE58FF1FD2871700DF73D6 /* City.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = City.m; sourceTree = "<group>"; };
 		726A6D71B3D8D18AF3403A37 /* Pods-WiproAssignment.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WiproAssignment.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WiproAssignment/Pods-WiproAssignment.debug.xcconfig"; sourceTree = "<group>"; };
 		C6356619B3CE24249A6F7840 /* Pods-WiproAssignment.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WiproAssignment.release.xcconfig"; path = "Pods/Target Support Files/Pods-WiproAssignment/Pods-WiproAssignment.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -147,6 +150,8 @@
 				44A8DBBD1FCE937500641F05 /* RequestHandler.m */,
 				44A8DBC71FCF060E00641F05 /* ResponseHandler.h */,
 				44A8DBC81FCF060E00641F05 /* ResponseHandler.m */,
+				44BE58FE1FD2871700DF73D6 /* City.h */,
+				44BE58FF1FD2871700DF73D6 /* City.m */,
 				44A8DB8A1FCE76FD00641F05 /* ViewController.h */,
 				44A8DB8B1FCE76FD00641F05 /* ViewController.m */,
 				44A8DBC41FCEF3CF00641F05 /* CustomTableViewCell.h */,
@@ -378,6 +383,7 @@
 				44A8DB921FCE76FD00641F05 /* WiproAssignment.xcdatamodeld in Sources */,
 				44A8DBBE1FCE937500641F05 /* RequestHandler.m in Sources */,
 				44A8DBC91FCF060E00641F05 /* ResponseHandler.m in Sources */,
+				44BE59001FD2871700DF73D6 /* City.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

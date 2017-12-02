@@ -7,24 +7,24 @@
 //
 
 #import "ResponseHandler.h"
-
+#import "City.h"
 @implementation ResponseHandler
-+(void) processRequest:(NSMutableURLRequest *) theRequest WithCompletionHandler:(void(^)(id theJson , NSError * theError))reponseCompletion{
++(void) processRequest:(NSMutableURLRequest *) theRequest WithCompletionHandler:(void(^)(NSArray* array ,NSString *title, NSError * theError))reponseCompletion{
     [NSURLConnection sendAsynchronousRequest:theRequest queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse * _Nullable response, NSData * _Nullable data, NSError * _Nullable connectionError) {
         
         if (connectionError) {
-            reponseCompletion(nil, connectionError);
+            reponseCompletion(nil, nil,connectionError);
             return ;
         }
         
         NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
         if (httpResponse.statusCode != 200) {
-            reponseCompletion(nil,[NSError errorWithDomain:@"custom domain" code:000 userInfo:@{NSLocalizedDescriptionKey:@"Request Error"}]);
+            reponseCompletion(nil,nil,[NSError errorWithDomain:@"custom domain" code:000 userInfo:@{NSLocalizedDescriptionKey:@"Request Error"}]);
             return;
         }
         
         if (data == nil) {
-            reponseCompletion(nil,[NSError errorWithDomain:@"custom domain" code:000 userInfo:@{NSLocalizedDescriptionKey:@"Data Error"}]);
+            reponseCompletion(nil,nil,[NSError errorWithDomain:@"custom domain" code:000 userInfo:@{NSLocalizedDescriptionKey:@"Data Error"}]);
             return;
         }
         
@@ -36,10 +36,18 @@
         
         id theJson = [NSJSONSerialization JSONObjectWithData:datautf8 options:kNilOptions error:&theJsonError];
         
-        reponseCompletion(theJson,nil);
-        
+        NSArray * cityArray = [self createCityArray: theJson];
+        reponseCompletion(cityArray,[theJson objectForKey:@"title"],nil);
     }];
     
 }
 
++ (NSArray *)createCityArray:(id)jsonData{
+    NSMutableArray <City *> *cityArray = [[NSMutableArray alloc]init];
+    for (NSDictionary *cityDictionary in [jsonData objectForKey:@"rows"]) {
+        City * city = [[City alloc]initWithCityInfo:cityDictionary];
+        [cityArray addObject:city];
+    }
+    return cityArray;
+}
 @end

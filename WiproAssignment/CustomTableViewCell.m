@@ -27,7 +27,7 @@
     self.secondaryLabel.textColor = [UIColor blackColor];
     self.secondaryLabel.font = [UIFont systemFontOfSize:12];
     self.secondaryLabel.numberOfLines = 0;
-    self.secondaryLabel.backgroundColor = [UIColor redColor];
+    self.secondaryLabel.backgroundColor = [UIColor clearColor];
 
     self.myImageView = [[UIImageView alloc]init];
     
@@ -57,11 +57,15 @@
 #pragma mark- Header
     NSLayoutConstraint * leadingHeaderConstraint = [NSLayoutConstraint constraintWithItem:primaryLabel attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.myImageView attribute:NSLayoutAttributeTrailing multiplier:1.0 constant:20];
      [self.contentView addConstraint:leadingHeaderConstraint];
+    
+    NSLayoutConstraint * trailingHeaderConstraint = [NSLayoutConstraint constraintWithItem:primaryLabel attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self.contentView attribute:NSLayoutAttributeTrailing multiplier:1.0 constant:20];
+    [self.contentView addConstraint:trailingHeaderConstraint];
+
      
      NSLayoutConstraint * topHeaderConstraint = [NSLayoutConstraint constraintWithItem:primaryLabel attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.contentView attribute:NSLayoutAttributeTop multiplier:1.0 constant:20];
      [self.contentView addConstraint:topHeaderConstraint];
      
-     NSLayoutConstraint *heightConstraint = [NSLayoutConstraint constraintWithItem:primaryLabel attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant: 30];//[self getLabelHeight:[[arrayDataOfCity objectAtIndex:indexPath.row] valueForKey:@"title"]]
+     NSLayoutConstraint *heightConstraint = [NSLayoutConstraint constraintWithItem:primaryLabel attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant: 30];
      [primaryLabel addConstraint:heightConstraint];
      
      #pragma mark- SUbtitle
@@ -76,12 +80,6 @@
      
      NSLayoutConstraint * bottomConstraint = [NSLayoutConstraint constraintWithItem:self.contentView attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:secondaryLabel attribute:NSLayoutAttributeBottom multiplier:1.0 constant:15];
      [self.contentView addConstraint:bottomConstraint];
-     
-//     NSLayoutConstraint *widthConstraint = [NSLayoutConstraint constraintWithItem:cell.secondaryLabel attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant: self.view.bounds.size.width - 80];
-//     [self.secondaryLabel addConstraint:widthConstraint];
-    
-//     NSLayoutConstraint *heightConstraint = [NSLayoutConstraint constraintWithItem:cell.secondaryLabel attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationGreaterThanOrEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant: [self getLabelHeight: [[arrayDataOfCity objectAtIndex:indexPath.row] valueForKey:@"description"]]];
-//     [self.secondaryLabel addConstraint: heightConstraint];
     
 }
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(nullable NSString *)reuseIdentifier{
