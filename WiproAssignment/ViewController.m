@@ -13,10 +13,11 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "UIView+UiviewConstraints.h"
 #import "City.h"
+
 @interface ViewController ()
 {
     UITableView *tblView;
-//    NSArray *cityArray;
+    //    NSArray *cityArray;
 }
 @property(nonatomic,strong)NSMutableArray <City*>*cityArray;
 @end
@@ -26,7 +27,6 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
-    
     self.view.backgroundColor = [UIColor grayColor];
     [self setLayOutConstraintsForView];
     [self fetchServerData];
@@ -49,8 +49,8 @@
                 else{
                     [weakSelf.cityArray addObjectsFromArray:array];
                 }
-                
                 weakSelf.title = city;
+                self.titleString = [city mutableCopy];
                 [tblView reloadData];
             }
             [tblView.refreshControl endRefreshing];
@@ -88,12 +88,12 @@
     refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@"Pull to Refresh"];
     [refreshControl addTarget:self action:@selector(fetchServerData) forControlEvents:UIControlEventValueChanged];
     tblView.refreshControl = refreshControl;
-
+    
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"Cell";
     City *objCity = self.cityArray[indexPath.row];
-
+    
     CustomTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[CustomTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
@@ -111,7 +111,7 @@
     
     if (cell != nil){
     }
-
+    
     return cell;
 }
 
@@ -135,7 +135,10 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+-(void)maintask{
+    self.titleString =@"About Canada";
+    
+}
 -(void)viewDidLayoutSubviews
 {
     [super viewDidLayoutSubviews];

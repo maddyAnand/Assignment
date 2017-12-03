@@ -15,12 +15,12 @@
 		44A8DB971FCE76FD00641F05 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 44A8DB951FCE76FD00641F05 /* LaunchScreen.storyboard */; };
 		44A8DB9A1FCE76FD00641F05 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 44A8DB991FCE76FD00641F05 /* main.m */; };
 		44A8DBA41FCE76FE00641F05 /* WiproAssignmentTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 44A8DBA31FCE76FE00641F05 /* WiproAssignmentTests.m */; };
-		44A8DBAF1FCE76FE00641F05 /* WiproAssignmentUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 44A8DBAE1FCE76FE00641F05 /* WiproAssignmentUITests.m */; };
 		44A8DBBE1FCE937500641F05 /* RequestHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 44A8DBBD1FCE937500641F05 /* RequestHandler.m */; };
 		44A8DBC61FCEF3CF00641F05 /* CustomTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 44A8DBC51FCEF3CF00641F05 /* CustomTableViewCell.m */; };
 		44A8DBC91FCF060E00641F05 /* ResponseHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 44A8DBC81FCF060E00641F05 /* ResponseHandler.m */; };
 		44BE58FD1FD04D3500DF73D6 /* UIView+UiviewConstraints.m in Sources */ = {isa = PBXBuildFile; fileRef = 44BE58FC1FD04D3500DF73D6 /* UIView+UiviewConstraints.m */; };
 		44BE59001FD2871700DF73D6 /* City.m in Sources */ = {isa = PBXBuildFile; fileRef = 44BE58FF1FD2871700DF73D6 /* City.m */; };
+		44BE594F1FD42ED100DF73D6 /* WiproAssignmentUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 44A8DBAE1FCE76FE00641F05 /* WiproAssignmentUITests.m */; };
 		E1363DC31B73DB2FC6017592 /* libPods-WiproAssignment.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 402DB96367A3D5BA421283C9 /* libPods-WiproAssignment.a */; };
 /* End PBXBuildFile section */
 
@@ -399,7 +399,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				44A8DBAF1FCE76FE00641F05 /* WiproAssignmentUITests.m in Sources */,
+				44BE594F1FD42ED100DF73D6 /* WiproAssignmentUITests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -548,6 +548,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
 				INFOPLIST_FILE = WiproAssignment/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.anandmadhav.WiproAssignment;
@@ -562,6 +563,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
 				INFOPLIST_FILE = WiproAssignment/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.anandmadhav.WiproAssignment;

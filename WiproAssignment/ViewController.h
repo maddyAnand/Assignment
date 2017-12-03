@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface ViewController : UIViewController<UITableViewDelegate,UITableViewDataSource>
-
+-(void) fetchServerData;
+-(void)maintask;
+@property(nonatomic , strong) NSString *titleString;
 @end
 

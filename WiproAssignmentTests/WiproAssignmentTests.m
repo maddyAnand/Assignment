@@ -7,8 +7,11 @@
 //
 
 #import <XCTest/XCTest.h>
+#import "ViewController.h"
 
 @interface WiproAssignmentTests : XCTestCase
+@property XCTestExpectation *expectation;
+@property(nonatomic,strong) ViewController *vcTest;
 
 @end
 
@@ -16,12 +19,34 @@
 
 - (void)setUp {
     [super setUp];
+    _vcTest = [[ViewController alloc]init];
+    
     // Put setup code here. This method is called before the invocation of each test method in the class.
 }
 
 - (void)tearDown {
     // Put teardown code here. This method is called after the invocation of each test method in the class.
     [super tearDown];
+}
+-(void)testAssynchronusTaskTwo{
+    [self.vcTest maintask];
+    NSString *expectedString =@"About Canada";
+    NSString *resultString = self.vcTest.titleString;
+    XCTAssertEqualObjects(expectedString, resultString);
+    
+}
+-(void)testAssynchronusTask{
+    _expectation = [self expectationWithDescription:@"test for city..."];
+    [_expectation fulfill];
+    [self.vcTest maintask];
+    [self.vcTest fetchServerData];
+    
+    [self waitForExpectationsWithTimeout:5.0 handler:^(NSError * _Nullable error) {
+        NSString *expectedString =@"About Canada";
+        NSString *resultString = self.vcTest.titleString;
+        XCTAssertEqualObjects(expectedString, resultString);
+    }];
+    
 }
 
 - (void)testExample {
