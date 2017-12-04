@@ -51,7 +51,7 @@
     [self.contentView addConstraint:leadingImageViewConstraint];
     
     
-    NSLayoutConstraint * centerYImageViewConstraint = [NSLayoutConstraint constraintWithItem:myImageView attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.contentView attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:16];
+    NSLayoutConstraint * centerYImageViewConstraint = [NSLayoutConstraint constraintWithItem:myImageView attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.contentView attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0];
     [self.contentView addConstraint:centerYImageViewConstraint];
     
 #pragma mark- Header
